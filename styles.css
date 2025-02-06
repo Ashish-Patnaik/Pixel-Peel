@@ -2,23 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Playwrite+IN:wght@100..400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Playwrite+IN:wght@100..400&display=swap');
 /* @import 'normalize.css'; */
-
 *,
 *:after,
 *:before {
     box-sizing: border-box;
 }
-
 :root {
     --x: 0;
     --y: 0;
 }
-
 html {
     color-scheme: light only;
     scroll-behavior: smooth;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -27,21 +23,27 @@ body {
     font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
         Helvetica, Arial, sans-serif, system-ui;
 }
-
 /* Grid background */
 body::before {
+    --line: color-mix(in lch, canvasText 25%, transparent);
+    --size: 60px;
     content: '';
+    height: 100vh;
+    width: 100vw;
     position: fixed;
+    background: linear-gradient(
+            90deg,
+            var(--line) 1px,
+            transparent 1px var(--size)
+        )
+        0 -5vmin / var(--size) var(--size),
+        linear-gradient(var(--line) 1px, transparent 1px var(--size)) 0 -5vmin / var(
+            --size
+        ) var(--size);
+    mask: linear-gradient(-15deg, transparent 60%, white);
     top: 0;
-    left: 0;
-    width: 100%; /* Use 100% instead of 100vw for better mobile support */
-    height: 100%; /* Use 100% instead of 100vh */
     z-index: -1;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px); /* Simpler grid with radial gradient */
-    background-size: 30px 30px; /* Adjust grid size as needed */
-    opacity: 0.2; /* Adjust opacity as needed */
 }
-
 /* Hero Section */
 .hero-section {
     display: flex;
@@ -50,7 +52,6 @@ body::before {
     min-height: 100vh;
     padding: 2rem;
 }
-
 article {
     width: 1200px;
     max-width: 1900px;
@@ -63,7 +64,6 @@ article {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
 }
-
 /* Your existing article styles remain the same */
 .assets {
     position: absolute;
@@ -73,7 +73,6 @@ article {
     height: 100%;
     overflow: hidden;
 }
-
 .assets > img {
     position: absolute;
     top: 0;
@@ -86,16 +85,13 @@ article {
     pointer-events: none;
     transition: object-position 0.3s ease;
 }
-
 .assets > img:first-of-type {
     filter: saturate(1.5) brightness(0.9);
     object-position: calc(50% + (var(--x) * 30px)) calc(50% + (var(--y) * -20px));
 }
-
 .assets > img:last-of-type {
     object-position: calc(50% + (var(--x) * 40px)) calc(50% + (var(--y) * -40px));
 }
-
 .assets h3 {
     position: absolute;
     left: 50%;
@@ -109,21 +105,18 @@ article {
     text-shadow: 12px 12px 14px rgba(0, 0, 0, 0.5);
     z-index: 2;
 }
-
 /* About Section - Updated */
 #about-section {
     background-color: black;
     padding: 6rem 2rem;
     width: 100%;
 }
-
 .about-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
     font-family: Playwrite IN;
 }
-
 #about-section h2 {
     font-size: 5.5rem;
     margin-bottom: 5px;
@@ -132,7 +125,6 @@ article {
     color: orange;
     font-family: josefin sans;
 }
-
 #about-section p {
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -140,7 +132,6 @@ article {
     font-size: 1.3rem;
     font-weight: 900;
 }
-
 #main h1{
     font-size: 5rem;
     color: lightgreen;
@@ -148,12 +139,10 @@ article {
     text-align: center;
     margin-top: -50px;
 }
-
 .drg{
     color: white;
     margin-bottom: 5rem;
 }
-
 footer{
     background-color: black;
     color: #fff;
@@ -172,8 +161,6 @@ footer p{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1.4rem;
 }
-
-
 /* Responsive Styles */
 @media (max-width: 768px) {
     .hero-section {
@@ -183,11 +170,9 @@ footer p{
     .assets h3 {
         font-size: 4rem;
     }
-
     #about-section {
         padding: 3rem 1.5rem;
     }
-
     #about-section h2 {
         font-size: 2rem;
     }
@@ -196,21 +181,18 @@ footer p{
         font-size: 1rem;
     }
 }
-
 @media (max-width: 480px) {
     .assets h3 {
         font-size: 3rem;
     }
 }
-
 /* Keep your existing blur styles */
 .blur {
-    --layers: 3;
+    --layers: 5;
     position: absolute;
     inset: 0;
     opacity: 0.7; /* Reduced opacity for better visibility */
 }
-
 .blur .layer {
     --blur: calc(
         sin(((var(--layers) - var(--index)) / var(--layers)) * 90deg) * 15
@@ -228,7 +210,6 @@ footer p{
         #0000 calc((25 + var(--stop)) * 1%)
     );
 }
-
 @media screen and (max-width: 768px) {
     .footer{
         display: flex;

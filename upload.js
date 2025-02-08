@@ -38,7 +38,7 @@ $(document).ready(function() {
         const file = e.target.files[0];
         if (!file) return;
         const ext = file.name.split('.').pop().toLowerCase();
-        if ($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+        if ($.inArray(ext, ['webp','png','jpg','jpeg']) == -1) {
             $(".error_msg").text("Not an Image...");
             resetUploadState();
             return;
